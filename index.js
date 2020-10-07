@@ -32,7 +32,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '안녕') {
-    return message.reply('ㅎㅇ');
+    return message.reply('하위');
   }
 
   if(message.content == 'embed') {
