@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '안녕') {
-    return message.reply('ㅎㅇ');
+    return message.reply('ㅎㅇ요');
   }
 
   if(message.content == '!si') {
