@@ -10,7 +10,7 @@ const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '!help를 쳐보세요.' }, status: 'online' })
+  client.user.setPresence({ game: { name: '!help를 쳐보세요. 곰탱은 바보이다.' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -37,7 +37,7 @@ client.on('message', (message) => {
   if(message.content == '안녕') {
     return message.reply('ㅎㅇ요');
   }
-  
+
   if(message.content == '!si') {
     let embed = new Discord.RichEmbed()
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
