@@ -37,13 +37,7 @@ client.on('message', (message) => {
   if(message.content == '안녕') {
     return message.reply('ㅎㅇ요');
   }
-  client.on('message', (message) => {
-    if(message.author.bot) return;
   
-    if(message.content == '뭐해?') {
-      return message.reply('일.');
-    }
-
   if(message.content == '!si') {
     let embed = new Discord.RichEmbed()
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
