@@ -37,6 +37,12 @@ client.on('message', (message) => {
   if(message.content == '안녕') {
     return message.reply('ㅎㅇ요');
   }
+  client.on('message', (message) => {
+    if(message.author.bot) return;
+  
+    if(message.content == '뭐해?') {
+      return message.reply('일.');
+    }
 
   if(message.content == '!si') {
     let embed = new Discord.RichEmbed()
