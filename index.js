@@ -35,13 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '빅맥송') {
-    return message.reply('참깨빵 위에 순쇠고기 패티 두장');
-    return message.reply('특별한 소스');
-    return message.reply('양상추');
-    return message.reply('치즈');
-    return message.reply('피클');
-    return message.reply('양파 까아지');
-    return message.reply('따란따따따');
+    return message.reply('참깨빵 위에 순쇠고기 패티 두장참깨빵 위에 순쇠고기 패티 두장 특별한 소스, 양상추, 치즈 피클 양파까지 따란따따따');
     
   }
 
