@@ -38,13 +38,13 @@ client.on('message', (message) => {
     return message.reply('참깨빵 위에 순쇠고기 패티 두장 특별한 소스 양상추 치즈 피클 양파까지 따란따따따');
     
   }
-  
+
   }); 
 
   client.on('message', (message) => {
     if(message.author.bot) return;
   
-    if(message.content == '@kakaobot') {
+    if(message.content == 'kakaobot아') {
       return message.reply('왜불러ㅡㅡ');
       
     }
@@ -109,6 +109,8 @@ client.on('message', (message) => {
       {name: '!청소', desc: '텍스트 지움'},
       {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
       {name: '!초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기'},
+      {name: '빅맥송', desc: '봇이 빅맥송을 불러줍니다.'},
+      {name: 'kakaobot아', desc: '봇이 대답합니다.'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
