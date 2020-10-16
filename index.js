@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '빅맥송') {
-    return message.reply('참깨빵 위에 순쇠고기 패티 두장 특별한 소스 양상추 치즈 피클 양파까지 따란따따따');
+    return message.reply('참깨빵 위에 순쇠고기 패티 두장 특별한 쏘오스 양상추 치즈 피클 양파까아지 따란따따따');
     
   }
 
@@ -46,6 +46,16 @@ client.on('message', (message) => {
   
     if(message.content == 'kakaobot아') {
       return message.reply('왜불러ㅡㅡ');
+      
+    }
+
+  }); 
+
+  client.on('message', (message) => {
+    if(message.author.bot) return;
+  
+    if(message.content == '안녕') {
+      return message.reply('ㅎㅇ');
       
     }
 
