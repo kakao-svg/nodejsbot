@@ -85,7 +85,7 @@ client.on('message', (message) => {
     let embed = new Discord.RichEmbed()
       .setTitle('타이틀')
       .setURL('http://www.naver.com')
-      .setAuthor('나긋해', img, 'http://www.naver.com')
+      .setAuthor('뷔', img, 'http://www.naver.com')
       .setThumbnail(img)
       .addBlankField()
       .addField('Inline field title', 'Some value here')
@@ -95,7 +95,7 @@ client.on('message', (message) => {
       .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
       .addBlankField()
       .setTimestamp()
-      .setFooter('나긋해가 만듬', img)
+      .setFooter('kakao가 만듬', img)
 
     message.channel.send(embed)
   } else if(message.content == '!help') {
@@ -114,9 +114,9 @@ client.on('message', (message) => {
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('Help of 콜라곰 BOT', helpImg)
+      .setAuthor('Help of kakaobot', helpImg)
       .setColor('#186de6')
-      .setFooter(`콜라곰 BOT ❤️`)
+      .setFooter(`kakaobot`)
       .setTimestamp()
     
     commandList.forEach(x => {
@@ -156,9 +156,9 @@ client.on('message', (message) => {
     if(message.member != null) { // 채널에서 공지 쓸 때
       let contents = message.content.slice('!전체공지2'.length);
       let embed = new Discord.RichEmbed()
-        .setAuthor('공지 of 콜라곰 BOT')
+        .setAuthor('공지 of kakaobot')
         .setColor('#186de6')
-        .setFooter(`콜라곰 BOT ❤️`)
+        .setFooter(`kakaobot`)
         .setTimestamp()
   
       embed.addField('공지: ', contents);
