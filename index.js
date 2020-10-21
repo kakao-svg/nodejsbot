@@ -1,204 +1,279 @@
-import discord
-import asyncio
-import random
-import openpyxl
-from discord import Member
-from discord.ext import commands
-import youtube_dl
-from urllib.request import urlopen, Request
-import urllib
-import bs4
-import urllib.request
-import bs4
-import 급식
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const token = process.argv.length == 2 ? process.env.token : "";
+const moment = require("moment");
+require("moment-duration-format");
+const welcomeChannelName = "안녕하세요";
+const byeChannelName = "안녕히가세요";
+const welcomeChannelComment = "어서오세요.";
+const byeChannelComment = "안녕히가세요.";
+
+client.on('ready', () => {
+  console.log('켰다.');
+  client.user.setPresence({ game: { name: '!help 제작자-kakao-_-' }, status: 'online' })
+});
+
+client.on("guildMemberAdd", (member) => {
+  const guild = member.guild;
+  const newUser = member.user;
+  const welcomeChannel = guild.channels.find(channel => channel.name == welcomeChannelName);
+
+  welcomeChannel.send(`<@${newUser.id}> ${welcomeChannelComment}\n`);
+
+  member.addRole(guild.roles.find(role => role.name == "손님"));
+});
+
+client.on("guildMemberRemove", (member) => {
+  const guild = member.guild;
+  const deleteUser = member.user;
+  const byeChannel = guild.channels.find(channel => channel.name == byeChannelName);
+
+  byeChannel.send(`<@${deleteUser.id}> ${byeChannelComment}\n`);
+});
+
+client.on('message', (message) => {
+  if(message.author.bot) return;
+
+  if(message.content == '빅맥송') {
+    return message.reply('참깨빵 위에 순쇠고기 패티 두장 특별한 쏘오스 양상추 치즈 피클 양파까아지 따란따따따');
+    
+  }
+
+  }); 
+
+  client.on('message', (message) => {
+    if(message.author.bot) return;
+  
+    if(message.content == 'kakaobot아') {
+      return message.reply('왜불러ㅡㅡ');
+      
+    }
+ 
+    }); 
+
+  client.on('message', (message) => {
+    if(message.author.bot) return;
+  
+    if(message.content == '안녕') {
+      return message.reply('ㅎㅇ');
+      
+    }
+  
+    }); 
+
+  client.on('message', (message) => {
+    if(message.author.bot) return;
+  
+    if(message.content == '봇상태') {
+      return message.reply('양호');
+      
+    }
+
+  if(message.content == '!si') {
+    let embed = new Discord.RichEmbed()
+    let img = 'file:///C:/Users/rlaqj/Desktop/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.webp';
+    var duration = moment.duration(client.uptime).format(" D [일], H [시간], m [분], s [초]");
+    embed.setColor('#186de6')
+    embed.setAuthor('server info of kakaobot', img)
+    embed.setFooter(`kakaobot`)
+    embed.addBlankField()
+    embed.addField('RAM usage',    `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
+    embed.addField('running time', `${duration}`, true);
+    embed.addField('user',         `${client.users.size.toLocaleString()}`, true);
+    embed.addField('server',       `${client.guilds.size.toLocaleString()}`, true);
+    // embed.addField('channel',      `${client.channels.size.toLocaleString()}`, true);
+    embed.addField('Discord.js',   `v${Discord.version}`, true);
+    embed.addField('Node',         `${process.version}`, true);
+    
+    let arr = client.guilds.array();
+    let list = '';
+    list = `\`\`\`css\n`;
+    
+    for(let i=0;i<arr.length;i++) {
+      // list += `${arr[i].name} - ${arr[i].id}\n`
+      list += `${arr[i].name}\n`
+    }
+    list += `\`\`\`\n`
+    embed.addField('list:',        `${list}`);
+
+    embed.setTimestamp()
+    message.channel.send(embed);
+  }
+
+  if(message.content == 'embed') {
+    let img = 'file:///C:/Users/rlaqj/Desktop/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.webp';
+    let embed = new Discord.RichEmbed()
+      .setTitle('타이틀')
+      .setURL('http://www.naver.com')
+      .setAuthor('뷔', img, 'http://www.naver.com')
+      .setThumbnail(img)
+      .addBlankField()
+      .addField('Inline field title', 'Some value here')
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
+      .addBlankField()
+      .setTimestamp()
+      .setFooter('kakao가 만듬', img)
+
+    message.channel.send(embed)
+  } else if(message.content == '!help') {
+    let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
+    let commandList = [
+      {name: '!help', desc: 'help'},
+      {name: 'ping', desc: '현재 핑 상태'},
+      {name: 'embed', desc: 'embed 예제1'},
+      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
+      {name: '!전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기'},
+      {name: '!청소', desc: '텍스트 지움'},
+      {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
+      {name: '!초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기'},
+      {name: '빅맥송', desc: '봇이 빅맥송을 불러줍니다.'},
+      {name: 'kakaobot아', desc: '봇이 대답합니다.'},
+      {name: '봇상태', desc: '봇 상태를 알려줍니다.'},
+    ];
+    let commandStr = '';
+    let embed = new Discord.RichEmbed()
+      .setAuthor('Help of kakaobot', helpImg)
+      .setColor('#186de6')
+      .setFooter(`kakaobot`)
+      .setTimestamp()
+    
+    commandList.forEach(x => {
+      commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
+    });
+
+    embed.addField('Commands: ', commandStr);
+
+    message.channel.send(embed)
+  } else if(message.content == '!초대코드2') {
+    client.guilds.array().forEach(x => {
+      x.channels.find(x => x.type == 'text').createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
+        .then(invite => {
+          message.channel.send(invite.url)
+        })
+        .catch((err) => {
+          if(err.code == 50013) {
+            message.channel.send('**'+x.channels.find(x => x.type == 'text').guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
+          }
+        })
+    });
+  } else if(message.content == '!초대코드') {
+    if(message.channel.type == 'dm') {
+      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
+    }
+    message.guild.channels.get(message.channel.id).createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
+      .then(invite => {
+        message.channel.send(invite.url)
+      })
+      .catch((err) => {
+        if(err.code == 50013) {
+          message.channel.send('**'+message.guild.channels.get(message.channel.id).guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
+        }
+      })
+  } else if(message.content.startsWith('!전체공지2')) {
+    if(checkPermission(message)) return
+    if(message.member != null) { // 채널에서 공지 쓸 때
+      let contents = message.content.slice('!전체공지2'.length);
+      let embed = new Discord.RichEmbed()
+        .setAuthor('공지 of kakaobot')
+        .setColor('#186de6')
+        .setFooter(`kakaobot`)
+        .setTimestamp()
+  
+      embed.addField('공지: ', contents);
+  
+      message.member.guild.members.array().forEach(x => {
+        if(x.user.bot) return;
+        x.user.send(embed)
+      });
+  
+      return message.reply('공지를 전송했습니다.');
+    } else {
+      return message.reply('채널에서 실행해주세요.');
+    }
+  } else if(message.content.startsWith('!전체공지')) {
+    if(checkPermission(message)) return
+    if(message.member != null) { // 채널에서 공지 쓸 때
+      let contents = message.content.slice('!전체공지'.length);
+      message.member.guild.members.array().forEach(x => {
+        if(x.user.bot) return;
+        x.user.send(`<@${message.author.id}> ${contents}`);
+      });
+  
+      return message.reply('공지를 전송했습니다.');
+    } else {
+      return message.reply('채널에서 실행해주세요.');
+    }
+  } else if(message.content.startsWith('!청소')) {
+    if(message.channel.type == 'dm') {
+      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
+    }
+    
+    if(message.channel.type != 'dm' && checkPermission(message)) return
+
+    var clearLine = message.content.slice('!청소 '.length);
+    var isNum = !isNaN(clearLine)
+
+    if(isNum && (clearLine <= 0 || 100 < clearLine)) {
+      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
+      return;
+    } else if(!isNum) { // c @나긋해 3
+      if(message.content.split('<@').length == 2) {
+        if(isNaN(message.content.split(' ')[2])) return;
+
+        var user = message.content.split(' ')[1].split('<@!')[1].split('>')[0];
+        var count = parseInt(message.content.split(' ')[2])+1;
+        let _cnt = 0;
+
+        message.channel.fetchMessages().then(collected => {
+          collected.every(msg => {
+            if(msg.author.id == user) {
+              msg.delete();
+              ++_cnt;
+            }
+            return !(_cnt == count);
+          });
+        });
+      }
+    } else {
+      message.channel.bulkDelete(parseInt(clearLine)+1)
+        .then(() => {
+          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "개의 메시지를 삭제했습니다. (이 메세지는 잠시 후에 사라집니다.)");
+        })
+        .catch(console.error)
+    }
+  }
+});
+
+function checkPermission(message) {
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) {
+    message.channel.send(`<@${message.author.id}> ` + "명령어를 수행할 관리자 권한을 소지하고 있지않습니다.")
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function changeCommandStringLength(str, limitLen = 8) {
+  let tmp = str;
+  limitLen -= tmp.length;
+
+  for(let i=0;i<limitLen;i++) {
+      tmp += ' ';
+  }
+
+  return tmp;
+}
+
+async function AutoMsgDelete(message, str, delay = 3000) {
+  let msg = await message.channel.send(str);
+
+  setTimeout(() => {
+    msg.delete();
+  }, delay);
+}
 
 
-client = discord.Client()
-@@ -109,6 +110,7 @@ async def on_message(message):
-        embed.add_field(name='!네코', value='!네코 라고 적으면 2D 고양이 이미지가 나옵니다', inline=False)
-        embed.add_field(name='!실시간검색어, !실검', value='!실시간검색어, !실검 이라고 적으면 네이버의 실시간 검색어 순위가 나타납니다.', inline=False)
-        embed.add_field(name='!번역 번역할문자', value='!번역 번역할문자 이라고 적으면 번역할 문자를 번역한 링크가 나타납니다. ("띄어쓰기를 하시면 안됩니다. _,-등으로 구분해주세요.")', inline=False)
-        embed.add_field(name='!영화순위', value='영화를 1~20순위로 나눈 영화순위 정보를 제공합니다.', inline=False)
-
-        await client.send_message(channel,embed=embed)
-
-@@ -196,13 +198,42 @@ async def on_message(message):
-        todayFeelingTemp = todayFeelingTemp1.text.strip()  # 체감온도
-        print(todayFeelingTemp)
-
-        todayMiseaMongi1 = bsObj.find('div', {'class': 'sub_info'})
-        todayMiseaMongi2 = todayMiseaMongi1.find('div', {'class': 'detail_box'})
-        todayMiseaMongi3 = todayMiseaMongi2.find('dd')
-        todayMiseaMongi = todayMiseaMongi3.text  # 미세먼지
-        print(todayMiseaMongi)
-
-        tomorrowBase = bsObj.find('div', {'class': 'table_info weekly _weeklyWeather'})
-        tomorrowTemp1 = tomorrowBase.find('li', {'class': 'date_info'})
-        tomorrowTemp2 = tomorrowTemp1.find('dl')
-        tomorrowTemp3 = tomorrowTemp2.find('dd')
-        tomorrowTemp = tomorrowTemp3.text.strip()  # 내일 오전,오후온도
-        tomorrowTemp = tomorrowTemp3.text.strip()  # 오늘 오전,오후온도
-        print(tomorrowTemp)
-
-        tomorrowAreaBase = bsObj.find('div', {'class': 'tomorrow_area'})
-        tomorrowMoring1 = tomorrowAreaBase.find('div', {'class': 'main_info morning_box'})
-        tomorrowMoring2 = tomorrowMoring1.find('span', {'class': 'todaytemp'})
-        tomorrowMoring = tomorrowMoring2.text.strip()  # 내일 오전 온도
-        print(tomorrowMoring)
-
-        tomorrowValue1 = tomorrowMoring1.find('div', {'class': 'info_data'})
-        tomorrowValue = tomorrowValue1.text.strip()  # 내일 오전 날씨상태, 미세먼지 상태
-        print(tomorrowValue)
-
-        tomorrowAreaBase = bsObj.find('div', {'class': 'tomorrow_area'})
-        tomorrowAllFind = tomorrowAreaBase.find_all('div', {'class': 'main_info morning_box'})
-        tomorrowAfter1 = tomorrowAllFind[1]
-        tomorrowAfter2 = tomorrowAfter1.find('p', {'class': 'info_temperature'})
-        tomorrowAfter3 = tomorrowAfter2.find('span', {'class': 'todaytemp'})
-        tomorrowAfterTemp = tomorrowAfter3.text.strip()  # 내일 오후 온도
-        print(tomorrowAfterTemp)
-
-        tomorrowAfterValue1 = tomorrowAfter1.find('div', {'class': 'info_data'})
-        tomorrowAfterValue = tomorrowAfterValue1.text.strip()
-
-        print(tomorrowAfterValue)  # 내일 오후 날씨상태,미세먼지
-
-        embed = discord.Embed(
-            title=learn[1]+ ' 날씨 정보',
-            description=learn[1]+ '날씨 정보입니다.',
-@@ -211,7 +242,15 @@ async def on_message(message):
-        embed.add_field(name='현재온도', value=todayTemp+'˚', inline=False)  # 현재온도
-        embed.add_field(name='체감온도', value=todayFeelingTemp, inline=False)  # 체감온도
-        embed.add_field(name='현재상태', value=todayValue, inline=False)  # 밝음,어제보다 ?도 높거나 낮음을 나타내줌
-        embed.add_field(name='내일 오전/오후 날씨', value=todayFeelingTemp, inline=False)  # 내일날씨
-        embed.add_field(name='현재 미세먼지 상태', value=todayMiseaMongi, inline=False)  # 오늘 미세먼지
-        embed.add_field(name='오늘 오전/오후 날씨', value=tomorrowTemp, inline=False)  # 오늘날씨 # color=discord.Color.blue()
-        embed.add_field(name='**----------------------------------**',value='**----------------------------------**', inline=False)  # 구분선
-        embed.add_field(name='내일 오전온도', value=tomorrowMoring+'˚', inline=False)  # 내일오전날씨
-        embed.add_field(name='내일 오전날씨상태, 미세먼지 상태', value=tomorrowValue, inline=False)  # 내일오전 날씨상태
-        embed.add_field(name='내일 오후온도', value=tomorrowAfterTemp + '˚', inline=False)  # 내일오후날씨
-        embed.add_field(name='내일 오후날씨상태, 미세먼지 상태', value=tomorrowAfterValue, inline=False)  # 내일오후 날씨상태
-
-
-
-        await client.send_message(message.channel,embed=embed)
-
-@@ -549,16 +588,25 @@ async def on_message(message):
-        bsObj = bs4.BeautifulSoup(html, "html.parser")
-        realTimeSerach1 = bsObj.find('div', {'class': 'ah_roll_area PM_CL_realtimeKeyword_rolling'})
-        realTimeSerach2 = realTimeSerach1.find('ul', {'class': 'ah_l'})
-        realTimeSerach3 = realTimeSerach2.text
-        realTimeSerach4 = realTimeSerach3.strip()
-        print(realTimeSerach4)
-        realTimeSerach3 = realTimeSerach2.find_all('li')
-
-
-        embed = discord.Embed(
-            title='네이버 실시간 검색어',
-            description='실시간검색어',
-            colour=discord.Colour.green()
-        )
-        embed.add_field(name='현재 실시간 검색어 순위입니다.', value=realTimeSerach4, inline=False)
-        await client.send_message(message.channel,embed=embed)
-        for i in range(0,19):
-            realTimeSerach4 = realTimeSerach3[i]
-            realTimeSerach5 = realTimeSerach4.find('span', {'class': 'ah_k'})
-            realTimeSerach = realTimeSerach5.text.replace(' ', '')
-            realURL = 'https://search.naver.com/search.naver?ie=utf8&query='+realTimeSerach
-            print(realTimeSerach)
-            embed.add_field(name=str(i+1)+'위', value='**----'+realTimeSerach +'----**'+ '\n'+realURL, inline=False)
-
-        await client.send_message(message.channel, embed=embed)
-
-
-
-    if message.content.startswith('!번역'):
-        learn = message.content.split(" ")
-@@ -587,17 +635,84 @@ async def on_message(message):
-        await client.send_message(message.channel, embed=embed)
-        #"http://www.gifbin.com/random"
-
-
-    if message.content.startswith('!영화순위'):
-        # http://ticket2.movie.daum.net/movie/movieranklist.aspx
-        i1 = 0 # 랭킹 string값
-        embed = discord.Embed(
-            title = "영화순위",
-            description = "영화순위입니다.",
-            colour= discord.Color.red()
-        )
-        hdr = {'User-Agent': 'Mozilla/5.0'}
-        url = 'http://ticket2.movie.daum.net/movie/movieranklist.aspx'
-        print(url)
-        req = Request(url, headers=hdr)
-        html = urllib.request.urlopen(req)
-        bsObj = bs4.BeautifulSoup(html, "html.parser")
-        moviechartBase = bsObj.find('div', {'class': 'main_detail'})
-        moviechart1 = moviechartBase.find('ul', {'class': 'list_boxthumb'})
-        moviechart2 = moviechart1.find_all('li')
-
-        for i in range(0, 20):
-            i1 = i1+1
-            stri1 = str(i1) # i1은 영화랭킹을 나타내는데 사용됩니다
-            print()
-            print(i)
-            print()
-            moviechartLi1 = moviechart2[i]  # ------------------------- 1등랭킹 영화---------------------------
-            moviechartLi1Div = moviechartLi1.find('div', {'class': 'desc_boxthumb'})  # 영화박스 나타내는 Div
-            moviechartLi1MovieName1 = moviechartLi1Div.find('strong', {'class': 'tit_join'})
-            moviechartLi1MovieName = moviechartLi1MovieName1.text.strip()  # 영화 제목
-            print(moviechartLi1MovieName)
-
-            moviechartLi1Ratting1 = moviechartLi1Div.find('div', {'class': 'raking_grade'})
-            moviechartLi1Ratting2 = moviechartLi1Ratting1.find('em', {'class': 'emph_grade'})
-            moviechartLi1Ratting = moviechartLi1Ratting2.text.strip()  # 영화 평점
-            print(moviechartLi1Ratting)
-
-            moviechartLi1openDay1 = moviechartLi1Div.find('dl', {'class': 'list_state'})
-            moviechartLi1openDay2 = moviechartLi1openDay1.find_all('dd')  # 개봉날짜, 예매율 두개포함한 dd임
-            moviechartLi1openDay3 = moviechartLi1openDay2[0]
-            moviechartLi1Yerating1 = moviechartLi1openDay2[1]
-            moviechartLi1openDay = moviechartLi1openDay3.text.strip()  # 개봉날짜
-            print(moviechartLi1openDay)
-            moviechartLi1Yerating = moviechartLi1Yerating1.text.strip()  # 예매율 ,랭킹변동
-            print(moviechartLi1Yerating)  # ------------------------- 1등랭킹 영화---------------------------
-            print()
-            embed.add_field(name='---------------랭킹'+stri1+'위---------------', value='\n영화제목 : '+moviechartLi1MovieName+'\n영화평점 : '+moviechartLi1Ratting+'점'+'\n개봉날짜 : '+moviechartLi1openDay+'\n예매율,랭킹변동 : '+moviechartLi1Yerating, inline=False) # 영화랭킹
-
-
-        await client.send_message(message.channel, embed=embed)
-
-
-    if message.content.startswith("!급식"):
-        embed = discord.Embed(
-            title='군포 E 비즈니스 고등학교 급식',
-            description='급식입니다.',
-            colour=discord.Colour.green()
-        )
-        embed.add_field(name='오늘', value=급식.lunchtext(), inline=False)
-        embed.add_field(name='내일', value=급식.lunchtextD1(), inline=False)
-        embed.add_field(name='모래', value=급식.lunchtextD2(), inline=False)
-        await client.send_message(message.channel, embed=embed)
-
-    if message.content.startswith("!테스트"):
-        embed = discord.Embed(
-            title='테스트',
-            description='ㅇㅇ',
-            colour=discord.Colour.green()
-        )
-        embed.add_field(name='테스트', value='[Discordapp](<https://discordapp.com>)', inline=False)
-        embed.add_field(name='테스트중..', value="https://youtu.be/WptXk39wiIQ", inline=False)
-        embed.add_field(name='테스트중..', value="https://youtu.be/2kZVEUGLgy4", inline=False)
-        embed.add_field(name='테스트중..', value="https://youtu.be/z5A0joDLq38", inline=False)
-        await client.send_message(message.channel, embed=embed)
-
-
-
-
-
-
-
-
-
-
-client.run('')
+client.login(token);
