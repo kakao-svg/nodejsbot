@@ -1,3 +1,18 @@
+import discord
+import asyncio
+import random
+import openpyxl
+from discord import Member
+from discord.ext import commands
+import youtube_dl
+from urllib.request import urlopen, Request
+import urllib
+import bs4
+import urllib.request
+import bs4
+import 급식
+
+
 client = discord.Client()
 @@ -109,6 +110,7 @@ async def on_message(message):
         embed.add_field(name='!네코', value='!네코 라고 적으면 2D 고양이 이미지가 나옵니다', inline=False)
