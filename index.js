@@ -48,14 +48,24 @@ client.on('message', (message) => {
       return message.reply('왜불러ㅡㅡ');
       
     }
-
-  }); 
+ 
+    }); 
 
   client.on('message', (message) => {
     if(message.author.bot) return;
   
     if(message.content == '안녕') {
       return message.reply('ㅎㅇ');
+      
+    }
+  
+    }); 
+
+  client.on('message', (message) => {
+    if(message.author.bot) return;
+  
+    if(message.content == '봇상태') {
+      return message.reply('양호');
       
     }
 
@@ -121,6 +131,7 @@ client.on('message', (message) => {
       {name: '!초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기'},
       {name: '빅맥송', desc: '봇이 빅맥송을 불러줍니다.'},
       {name: 'kakaobot아', desc: '봇이 대답합니다.'},
+      {name: '봇상태', desc: '봇 상태를 알려줍니다.'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
