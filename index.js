@@ -110,7 +110,7 @@ if(message.content == '카카오봇 개발자') {
     message.channel.send(embed);
   }
 
-  if(message.content == 'embed') {
+  if(message.content == '!embed') {
     let img = 'file:///C:/Users/rlaqj/Desktop/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.webp';
     let embed = new Discord.RichEmbed()
       .setTitle('타이틀')
@@ -133,7 +133,7 @@ if(message.content == '카카오봇 개발자') {
     let commandList = [
       {name: '!help', desc: 'help'},
       {name: 'ping', desc: '현재 핑 상태'},
-      {name: 'embed', desc: 'embed 예제1'},
+      {name: '!embed', desc: 'embed 예제1'},
       {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움'},
