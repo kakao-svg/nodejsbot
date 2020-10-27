@@ -68,6 +68,16 @@ client.on('message', (message) => {
       return message.reply('양호');
       
     }
+  
+}); 
+
+client.on('message', (message) => {
+if(message.author.bot) return;
+
+if(message.content == '카카오봇 개발자') {
+  return message.reply('kakao-_-#2586으로 DM주세요');
+  
+}
 
   if(message.content == '!si') {
     let embed = new Discord.RichEmbed()
@@ -132,6 +142,7 @@ client.on('message', (message) => {
       {name: '빅맥송', desc: '봇이 빅맥송을 불러줍니다.'},
       {name: 'kakaobot아', desc: '봇이 대답합니다.'},
       {name: '봇상태', desc: '봇 상태를 알려줍니다.'},
+      {name: '카카오봇 개발자', desc: '알려주는 프로필로 DM보내세요.'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
