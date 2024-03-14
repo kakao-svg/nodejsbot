@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '빅맥송') {
-    return message.reply('참깨빵 위에 순쇠고기 패티 두장 특별한 쏘오스 양상추 치즈 피클 양파까아지 따란따따따');
+    return message.reply('.');
     
   }
 
@@ -230,7 +230,7 @@ if(message.content == '카카오봇 개발자') {
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
       message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
       return;
-    } else if(!isNum) { // c @나긋해 3
+    } else if(!isNum) { // c @ 3
       if(message.content.split('<@').length == 2) {
         if(isNaN(message.content.split(' ')[2])) return;
 
